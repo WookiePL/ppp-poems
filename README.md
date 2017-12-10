@@ -16,6 +16,8 @@ Aplikacja zarządzająca bazą wierszy.
 2. edytuj plik `ppp-poems\.idea\ppp-poems3.iml`, zmień `JAVA_MODULE` na `PYTHON_MODULE`
 3. zrestartuj IJ
 4. po uruchomieniu:
+
+
 ![Alt text](/readme_images/sshot-321.png)
 5. File -> Project Structure -> Project -> Project SDK -> New -> Python SDK -> Add Local 
    Virtual enviroment dla Pythona tworzymy najlepiej tam gdzie IJ domyślnie pokazuje (`ppp-poems\venv`)
@@ -27,6 +29,14 @@ Aplikacja zarządzająca bazą wierszy.
 9. można sobie dodać Run server od Django do IJ:
    serwery w prawym górnym rogu -> Edit configurations -> zielony plus -> Django server. Use specified interpreter powinno być ustawione na naszego virtual enva
 
+# BARDZO WAŻNE INFO
+
+Jak robimy jakiekolwiek zmiany w modelach, muszą być one również odzwierciedlone na bazie.
+W tym celu należy ogarnąć migrację bazy danych (musi być włączony nasz virtual env):
+    
+`manage.py makemigrations`
+<br />
+`manage.py migrate`
 
 ### Jeśli dodasz nowy framework, plugin etc:
 1. `pip freeze > <sciezka_do_repo>\requirements.txt`
