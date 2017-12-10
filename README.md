@@ -13,7 +13,7 @@ Aplikacja zarządzająca bazą wierszy.
 0. zainstaluj plugin do Pythona (File->Settings->Plugins->Install JetBrains plugin...)
 ![Alt text](/readme_images/sshot-320.png)
 1. File -> Open.. -> głowny folder `ppp-poems`
-2. edytuj plik `ppp-poems\.idea\ppp-poems3.iml`, zmień `JAVA_MODULE` na `PYTHON_MODULE`
+2. edytuj plik `ppp-poems\.idea\ppp-poems.iml`, zmień `JAVA_MODULE` na `PYTHON_MODULE`
 3. zrestartuj IJ
 4. po uruchomieniu:
 
