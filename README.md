@@ -34,9 +34,11 @@ Aplikacja zarządzająca bazą wierszy.
 Jak robimy jakiekolwiek zmiany w modelach, muszą być one również odzwierciedlone na bazie.
 W tym celu należy ogarnąć migrację bazy danych (musi być włączony nasz virtual env):
     
-`manage.py makemigrations`
+`ppp-poems\ppp_poems\manage.py makemigrations`
 <br />
-`manage.py migrate`
+`ppp-poems\ppp_poems\manage.py migrate`
+
+W katalogu `ppp-poems\poems\migrations` zostanie wygenerowany nowy plik z migracją który **NALEŻY KONIECZNIE ZAKOMITOWAĆ DO REPO**
 
 ### Jeśli dodasz nowy framework, plugin etc:
 1. `pip freeze > <sciezka_do_repo>\requirements.txt`
