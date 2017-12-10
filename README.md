@@ -2,13 +2,14 @@
 PPP PAI OiRPOS projekt
 Aplikacja zarządzająca bazą wierszy.
 
-###Przygotowanie środowiska
+### Przygotowanie środowiska
 1. Przygotuj venv i aktywuj
 2. Dodaj katalog z repo do katalogu z venv
 3. `pip install -r <sciezka_do_repo>\requirements.txt`  ( tak to chyba bylo )
 4. Mozna pracowac
 
-###Przygotowanie Intellija
+### Przygotowanie Intellija
+
 0. zainstaluj plugin do Pythona (File->Settings->Plugins->Install JetBrains plugin...)
 ![Alt text](/readme_images/sshot-320.png)
 1. File -> Open.. -> głowny folder `ppp-poems`
@@ -27,11 +28,11 @@ Aplikacja zarządzająca bazą wierszy.
    serwery w prawym górnym rogu -> Edit configurations -> zielony plus -> Django server. Use specified interpreter powinno być ustawione na naszego virtual enva
 
 
-###Jeśli dodasz nowy framework, plugin etc:
+### Jeśli dodasz nowy framework, plugin etc:
 1. `pip freeze > <sciezka_do_repo>\requirements.txt`
 2. Daj znac ze cos sie zmienilo
 
-###wymagania:
+### wymagania:
 - dashboard z ostatnimi wierszami
 - szukajka po dacie/autorze
 - dodaj wiesz + podpis
