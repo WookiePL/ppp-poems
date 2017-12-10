@@ -1,11 +1,32 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-# Create your models here.
+
+class Author(models.Model):
+    name = models.CharField(max_length=50)
+    surname = models.CharField(max_length=50)
+
+
+class Rate(models.Model):
+    rating = models.IntegerField(validators=[
+        MinValueValidator(1),
+        MaxValueValidator(5)
+    ])
+    creation_time = models.DateTimeField(auto_now_add=True)
+
 
 class Poem(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    rating = models.IntegerField(null=True, blank=True)
+    content = models.TextField(blank=True)
+    rates = models.ManyToManyField(Rate, blank=True)
+    author = models.OneToOneField(Author, null=True)
+    creation_time = models.DateTimeField(auto_now_add=True)
+    modification_time = models.DateTimeField(auto_now=True)
+
+    @property
+    def rating(self):
+        return None
 
     def __str__(self):
-        return "Poeam: {}".format(self.title)
+        return "Poem: {}".format(self.title)
