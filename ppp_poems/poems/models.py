@@ -26,7 +26,7 @@ class Poem(models.Model):
 
     @property
     def rating(self):
-        #not implemented yet
+        # not implemented yet
         return None
 
     def __str__(self):
