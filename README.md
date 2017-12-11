@@ -25,12 +25,17 @@ Aplikacja zarządzająca bazą wierszy.
 
 6. Project Structure powinno wygladac teraz tak:
 ![Alt text](/readme_images/sshot-322.png)
+Jeśli zamiast Django jest napisane Python zrestartuj IJ, powtórz pkt 4
+
+
 7. otwieramy Terminal w IJ:
 `venv\Scripts\activate` co włączy virtual enva w terminalu
 
-8. powinno śmigać jak marzenie
+8. `pip install -r requirements.txt`
 
-9. można sobie dodać Run server od Django do IJ:
+9. powinno śmigać jak marzenie
+
+10. można sobie dodać Run server od Django do IJ:
    serwery w prawym górnym rogu -> Edit configurations -> zielony plus -> Django server. Use specified interpreter powinno być ustawione na naszego virtual enva
 
 # BARDZO WAŻNE INFO
