@@ -5,7 +5,7 @@ Aplikacja zarządzająca bazą wierszy.
 ### Przygotowanie środowiska
 1. Przygotuj venv i aktywuj
 2. Dodaj katalog z repo do katalogu z venv
-3. `pip install -r <sciezka_do_repo>\requirements.txt`  ( tak to chyba bylo )
+3. `pip install -r <sciezka_do_repo>\requirements.txt`  (tak to chyba bylo)
 4. Mozna pracowac
 
 ### Przygotowanie Intellija
