@@ -43,9 +43,9 @@ Jeśli zamiast Django jest napisane Python zrestartuj IJ, powtórz pkt 4
 Jak robimy jakiekolwiek zmiany w modelach, muszą być one również odzwierciedlone na bazie.
 W tym celu należy ogarnąć migrację bazy danych (musi być włączony nasz virtual env):
     
-`ppp-poems\ppp_poems\manage.py makemigrations`
+`ppp-poems\ppp_poems_core\manage.py makemigrations`
 <br />
-`ppp-poems\ppp_poems\manage.py migrate`
+`ppp-poems\ppp_poems_core\manage.py migrate`
 
 W katalogu `ppp-poems\poems\migrations` zostanie wygenerowany nowy plik z migracją który **NALEŻY KONIECZNIE ZAKOMITOWAĆ DO REPO**
 
