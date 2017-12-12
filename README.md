@@ -20,7 +20,8 @@ Aplikacja zarządzająca bazą wierszy.
 
 ![Alt text](/readme_images/sshot-321.png)
 
-5. File -> Project Structure -> Project -> Project SDK -> New -> Python SDK -> Add Local 
+5. File -> Project Structure -> Project -> Project SDK -> New -> Python SDK -> Add Local.
+ 
    Virtual enviroment dla Pythona tworzymy najlepiej tam gdzie IJ domyślnie pokazuje (`ppp-poems\venv`)
 
 6. Project Structure powinno wygladac teraz tak:
