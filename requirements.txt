@@ -2,3 +2,4 @@ Django==1.11.7
 pytz==2017.3
 django-rest-swagger==2.1.2
 djangorestframework==3.7.3
+psycopg2==2.7.3.2
