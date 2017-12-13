@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
@@ -34,3 +35,9 @@ class Poem(models.Model):
 
     def __str__(self):
         return "Poem: {}".format(self.title)
+
+
+class Comment(models.Model):
+    content = models.TextField(blank=True)
+    user = models.OneToOneField(User)
+    poem = models.ForeignKey(Poem, on_delete=models.CASCADE)

@@ -44,15 +44,38 @@ Jeśli zamiast Django jest napisane Python zrestartuj IJ, powtórz pkt 4
 Jak robimy jakiekolwiek zmiany w modelach, muszą być one również odzwierciedlone na bazie.
 W tym celu należy ogarnąć migrację bazy danych (musi być włączony nasz virtual env):
     
-`ppp-poems\ppp_poems_core\manage.py makemigrations`
+`ppp-poems\ppp_poems\manage.py makemigrations`
 <br />
-`ppp-poems\ppp_poems_core\manage.py migrate`
+`ppp-poems\ppp_poems\manage.py migrate`
 
 W katalogu `ppp-poems\poems\migrations` zostanie wygenerowany nowy plik z migracją który **NALEŻY KONIECZNIE ZAKOMITOWAĆ DO REPO**
 
 ### Jeśli dodasz nowy framework, plugin etc:
 1. `pip freeze > <sciezka_do_repo>\requirements.txt`
 2. Daj znac ze cos sie zmienilo
+
+### tworzenie przykladowych obiektow w bazie 
+1. File -> Settings i wyszukaj, skonfiguruj:
+![Alt text](/readme_images/sshot-322.png)
+
+2. Tools -> Python console
+3. i można się bawić wpisując po 1 linii:
+```python
+import django
+django.setup()
+```
+z użyciem fabryki:
+```python
+import poems.tests.poem_factory
+PoemFactory.create() #stwórz 1 wiersz
+PoemFactory.create(title="Wiersz", description="Opis", content="Treść wiersza") #stwórz 1 wiersz z podanymi parametrami
+PoemFactory.create_many(5) # stwórz 5 wierszy
+```
+bezpośrednio przez QuerySet:
+```python
+from poems.models import Author 
+Author.objects.create(name="Imie", surname="nazwisko")
+```
 
 ### wymagania:
 - dashboard z ostatnimi wierszami

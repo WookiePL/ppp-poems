@@ -31,6 +31,11 @@ class TestModelsWithDefaultParams(TestCase):
 
         self.assertEqual(Rate.objects.get(id=1), rate)
 
+    def test_example(self):
+        Poem.objects.all().values()
+
+        pass
+
     def test_poem_factory(self):
         title = "Poem title 1"
         description = "Poem description 1"
