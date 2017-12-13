@@ -7,7 +7,7 @@ class Author(models.Model):
     surname = models.CharField(max_length=50)
 
     def __str__(self):
-        return "Poem: {}".format(self.name)
+        return "{0} {1}".format(self.name, self.surname)
 
 
 class Rate(models.Model):
