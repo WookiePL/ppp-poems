@@ -56,7 +56,7 @@ W katalogu `ppp-poems\poems\migrations` zostanie wygenerowany nowy plik z migrac
 
 ### tworzenie przykladowych obiektow w bazie 
 1. File -> Settings i wyszukaj, skonfiguruj:
-![Alt text](/readme_images/sshot-322.png)
+![Alt text](/readme_images/sshot-327.png)
 
 2. Tools -> Python console
 3. i można się bawić wpisując po 1 linii:
