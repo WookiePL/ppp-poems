@@ -18,14 +18,15 @@ from django.contrib import admin
 from rest_framework_swagger.views import get_swagger_view
 
 
-from poems.api.views import AuthorView, PoemView, PoemsView
+from poems.api.views import AuthorView, PoemView, PoemsView, AuthorsView
 
 schema_view = get_swagger_view(title='PPP poems API')
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^swagger/', schema_view),
     url(r'^api/author/(?P<pk>\d+)/$', AuthorView.as_view()),
+    url(r'^api/authors$', AuthorsView.as_view()),
     url(r'^api/poem/(?P<pk>\d+)/$', PoemView.as_view()),
     url(r'^api/poems$', PoemsView.as_view())
 ]
+
