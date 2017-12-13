@@ -99,3 +99,11 @@ ENV/
 
 # mypy
 .mypy_cache/
+/.idea/*.xml
+/.idea/dataSources/*.xml
+/.idea/dataSources/8c02f60c-ce32-4995-878e-c96f8bc03c6c/storage_v2/_src_/schema/*.meta
+/.idea/inspectionProfiles/*.xml
+/.idea/sonarlint/issuestore/7/a/*
+/.idea/sonarlint/issuestore/a/5/*
+/.idea/sonarlint/issuestore/*.pb
+/*.iml
