@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ppp_poems_core.poems.models import Author, Poem
+from poems.models import Author, Poem
 
 
 class AuthorSerializer(serializers.ModelSerializer):

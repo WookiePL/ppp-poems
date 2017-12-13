@@ -1,5 +1,5 @@
-from ppp_poems_core.poems.models import Author
-from ppp_poems_core.poems.tests.factory_base import FactoryBase
+from ppp_poems.poems.models import Author
+from ppp_poems.poems.tests.factory_base import FactoryBase
 
 
 class AuthorFactory(FactoryBase):

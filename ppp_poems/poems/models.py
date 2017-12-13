@@ -6,6 +6,9 @@ class Author(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
 
+    def __str__(self):
+        return "Poem: {}".format(self.name)
+
 
 class Rate(models.Model):
     rating = models.IntegerField(validators=[
@@ -20,7 +23,7 @@ class Poem(models.Model):
     description = models.TextField(blank=True)
     content = models.TextField(blank=True)
     rates = models.ManyToManyField(Rate, blank=True)
-    author = models.OneToOneField(Author, null=True)
+    author = models.ForeignKey(Author, null=True)
     creation_time = models.DateTimeField(auto_now_add=True)
     modification_time = models.DateTimeField(auto_now=True)
 

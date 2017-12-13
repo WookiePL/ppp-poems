@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ppp_poems_core.poems',
+    'poems',
     'rest_framework',
     'rest_framework_swagger'
 ]
