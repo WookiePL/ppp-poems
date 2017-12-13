@@ -18,6 +18,9 @@ class Rate(models.Model):
     ])
     creation_time = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return "{0}".format(self.rating)
+
 
 class Poem(models.Model):
     title = models.CharField(max_length=100)
