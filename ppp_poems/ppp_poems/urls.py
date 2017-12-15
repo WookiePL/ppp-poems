@@ -13,12 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_swagger.views import get_swagger_view
-
-
 from poems.api.views import AuthorView, PoemView, PoemsView, AuthorsView
+admin.autodiscover()
+
 
 schema_view = get_swagger_view(title='PPP poems API')
 urlpatterns = [
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^api/author/(?P<pk>\d+)/$', AuthorView.as_view()),
     url(r'^api/authors$', AuthorsView.as_view()),
     url(r'^api/poem/(?P<pk>\d+)/$', PoemView.as_view()),
-    url(r'^api/poems$', PoemsView.as_view())
+    url(r'^api/poems$', PoemsView.as_view()),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 ]
 
