@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_swagger.views import get_swagger_view
-from poems.api.views import AuthorView, PoemView, PoemsView, AuthorsView
+from poems.api.views import AuthorView, PoemView, PoemsView, AuthorsView, ApplicationView
 admin.autodiscover()
 
 
@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^api/authors$', AuthorsView.as_view()),
     url(r'^api/poem/(?P<pk>\d+)/$', PoemView.as_view()),
     url(r'^api/poems$', PoemsView.as_view()),
-    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
+    url(r'^api/application/(?P<name>.+)/$', ApplicationView.as_view()),
+    url(r'^api/o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 ]
 
