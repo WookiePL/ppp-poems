@@ -8,7 +8,8 @@ import {PoemsRoutingModule} from "./poems-routing.module";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 import {PageHeaderModule} from "../shared";
-import {PoemService} from "./poem.service";
+import {PoemService} from "./services/poem.service";
+import { PoemsAddComponent } from './poems-add/poems-add.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import {PoemService} from "./poem.service";
         PoemsListComponent,
         PoemsComponent,
         SidebarComponent,
-        HeaderComponent
+        HeaderComponent,
+        PoemsAddComponent
     ],
     providers: [
         PoemService

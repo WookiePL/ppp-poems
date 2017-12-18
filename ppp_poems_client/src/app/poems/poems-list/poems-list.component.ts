@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {IPoem} from "../poem";
-import {PoemService} from "../poem.service";
+import {PoemService} from "../services/poem.service";
 
 @Component({
     templateUrl: './poems-list.component.html',

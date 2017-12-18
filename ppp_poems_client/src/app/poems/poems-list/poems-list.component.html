@@ -1,9 +1,8 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div>
     <app-page-header [heading]="'Lista wierszy'" [icon]="'fa-table'"></app-page-header>
     <div class="card mb-3">
         <div class="card-header">Wiersze</div>
-        <table class="card-body table table-hover">
+        <table class="card-body table table-hover" *ngIf="poems && poems.length">
             <thead>
             <tr>
                 <th>#</th>
@@ -27,7 +26,6 @@
                 <td>{{ poem.creation_time }}</td>
                 <td>{{ poem.modification_time }}</td>
             </tr>
-
             </tbody>
         </table>
     </div>

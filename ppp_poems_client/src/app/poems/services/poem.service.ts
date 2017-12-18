@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {IPoem} from "./poem";
+import {IPoem} from "../poem";
 
 
 import 'rxjs/add/operator/do';
