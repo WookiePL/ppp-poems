@@ -8,7 +8,7 @@ class Author(models.Model):
     surname = models.CharField(max_length=50)
 
     def __str__(self):
-        return "{0} {1}".format(self.name, self.surname)
+        return f"{self.name} {self.surname}"
 
 
 class Rate(models.Model):
@@ -19,7 +19,7 @@ class Rate(models.Model):
     creation_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{0}".format(self.rating)
+        return f"{self.rating}"
 
 
 class Poem(models.Model):
@@ -37,7 +37,7 @@ class Poem(models.Model):
         return None
 
     def __str__(self):
-        return "Poem: {}".format(self.title)
+        return f"Poem: {self.title}"
 
 
 class Comment(models.Model):
