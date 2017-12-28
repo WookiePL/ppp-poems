@@ -1,0 +1,12 @@
+<div>
+    <app-page-header [heading]="'Wiersze'" [icon]="'fa-list'"></app-page-header>
+
+    <ul class="list-group">
+        <li *ngFor="let poem of poems" class="card list-group-item flex-column align-items-start">
+            <app-poem-item [poem]="poem"></app-poem-item>
+        </li>
+
+    </ul>
+</div>
+
+<router-outlet></router-outlet>

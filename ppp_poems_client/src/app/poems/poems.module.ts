@@ -9,6 +9,10 @@ import {TranslateModule} from "@ngx-translate/core";
 import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 import {PageHeaderModule} from "../shared";
 import {PoemService} from "./poem.service";
+import { PoemsPagedListComponent } from './poems-paged-list/poems-paged-list.component';
+import { PoemItemComponent } from './poem-item/poem-item.component';
+import {StarRatingModule} from "angular-star-rating";
+import {AuthService} from "../shared/services/auth.service";
 
 @NgModule({
     imports: [
@@ -16,13 +20,16 @@ import {PoemService} from "./poem.service";
         PoemsRoutingModule,
         TranslateModule,
         NgbDropdownModule.forRoot(),
-        PageHeaderModule
+        PageHeaderModule,
+        StarRatingModule
     ],
     declarations: [
         PoemsListComponent,
         PoemsComponent,
         SidebarComponent,
-        HeaderComponent
+        HeaderComponent,
+        PoemsPagedListComponent,
+        PoemItemComponent
     ],
     providers: [
         PoemService
