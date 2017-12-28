@@ -15,16 +15,19 @@ class ApplicationView(generics.ListAPIView):
 
 
 class AuthorsView(generics.ListAPIView):
+    authentication_classes = []
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
 
 class AuthorView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = []
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
 
 class PoemView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = []
     queryset = Poem.objects.all()
     serializer_class = PoemSerializer
 
