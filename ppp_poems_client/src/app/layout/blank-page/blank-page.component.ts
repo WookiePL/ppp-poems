@@ -10,9 +10,12 @@ export class BlankPageComponent implements OnInit {
     constructor(private http: HttpClient) {}
 
     title = 'app';
+    isLoggedIn = localStorage.getItem('isLoggedin');
     data;
     fetchData(){
-    this.data = this.http.get('/api/poems', {responseType: 'json'});
+        localStorage.setItem('isLoggedin', 'false');
+        this.isLoggedIn = localStorage.getItem('isLoggedin');
+        this.data = this.http.get('/api/poems', {responseType: 'json'});
     }
     ngOnInit() {}
 }

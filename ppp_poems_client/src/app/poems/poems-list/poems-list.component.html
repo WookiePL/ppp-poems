@@ -21,14 +21,15 @@
                 <td>{{ poem.title }}</td>
                 <td>{{ poem.description }}</td>
                 <td>{{ poem.content }}</td>
-                <td>{{ poem.rates }}</td>
+                <td><star-rating-comp [staticColor]="'ok'" [showHalfStars]="true" [labelText]="poem.rating" [hoverEnabled]="false" [starType]="'svg'" [rating]="poem.rating"></star-rating-comp></td>
                 <td>{{ poem.author }}</td>
-                <td>{{ poem.creation_time }}</td>
-                <td>{{ poem.modification_time }}</td>
+                <td>{{ poem.creation_time | date: 'short'}}</td>
+                <td>{{ poem.modification_time | date: 'short'}}</td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+
 
 <router-outlet></router-outlet>

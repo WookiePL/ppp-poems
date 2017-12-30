@@ -12,6 +12,7 @@ class Author(models.Model):
 
 
 class Rate(models.Model):
+    user = models.ForeignKey(User, null=False)
     rating = models.IntegerField(validators=[
         MinValueValidator(1),
         MaxValueValidator(5)
@@ -28,12 +29,12 @@ class Poem(models.Model):
     content = models.TextField(blank=True)
     rates = models.ManyToManyField(Rate, blank=True)
     author = models.ForeignKey(Author, null=True)
+    user = models.ForeignKey(User, null=False)
     creation_time = models.DateTimeField(auto_now_add=True)
     modification_time = models.DateTimeField(auto_now=True)
 
     @property
     def rating(self):
-        # not implemented yet
         return None
 
     def __str__(self):
