@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
-from django.db.models import Avg
-from rest_framework import serializers, permissions
+from rest_framework import serializers
 from oauth2_provider.models import Application
 
 from poems.models import Author, Poem, Rate
@@ -10,6 +9,12 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username')
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email')
 
 
 class AuthorSerializer(serializers.ModelSerializer):

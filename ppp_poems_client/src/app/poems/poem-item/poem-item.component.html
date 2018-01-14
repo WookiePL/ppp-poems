@@ -1,18 +1,18 @@
-<div>
+<div class="card-body">
     <div class="d-flex w-100 justify-content-between">
         <a href="#">
             <h4 class="mb-3">{{ poem.title }}</h4>
         </a>
-        <small class="text-muted">{{ poem.creation_time |date: 'short'}}</small>
+        <small class="text-muted">{{ poem.creation_time |date: 'short'}}   </small>
     </div>
-    <p class="mb-1">{{ poem.content }}</p>
-    <small class="mb-3 blockquote-footer text-muted">
-        {{ poem.author }}
-    </small>
+    <blockquote class="blockquote">
+        <p class="mb-0">{{ poem.content }}</p>
+        <footer class="blockquote-footer">{{ poem.author }}</footer>
+    </blockquote>
 
     <div class="d-flex w-100 justify-content-between">
-        <small>Added by: <span class="badge badge-light badge-pill">{{ poem.user.username }}</span></small>
-        <star-rating-comp [staticColor]="'ok'" [showHalfStars]="true" [hoverEnabled]="true" [starType]="'svg'" [rating]="poem.rating"></star-rating-comp>
+        <div><small>Added by: </small><span class="badge badge-light">{{ poem.user.username }}</span></div>
+        <star-rating-comp [staticColor]="'ok'" [showHalfStars]="true" [readOnly]="true" [starType]="'svg'" [rating]="poem.rating"></star-rating-comp>
     </div>
 </div>
 

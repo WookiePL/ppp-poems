@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PoemsComponent } from './poems.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {PoemsComponent} from './poems.component';
 import {PoemsListComponent} from "./poems-list/poems-list.component";
 import {PoemsPagedListComponent} from "./poems-paged-list/poems-paged-list.component";
 
@@ -10,14 +10,21 @@ const routes: Routes = [
         component: PoemsComponent,
         children: [
 
-            { path: 'poems-list', component: PoemsListComponent },
-            { path: 'poems', component: PoemsPagedListComponent }
+            {path: 'poems-list', component: PoemsListComponent},
+            {
+                path: 'poems', component: PoemsPagedListComponent
+            },
+            {
+                path: 'user', loadChildren: '../user/user.module#UserModule'
+            }
         ]
-    }
+    },
+
 ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class PoemsRoutingModule {}
+export class PoemsRoutingModule {
+}

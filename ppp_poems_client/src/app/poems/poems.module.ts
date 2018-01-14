@@ -12,7 +12,6 @@ import {PoemService} from "./poem.service";
 import { PoemsPagedListComponent } from './poems-paged-list/poems-paged-list.component';
 import { PoemItemComponent } from './poem-item/poem-item.component';
 import {StarRatingModule} from "angular-star-rating";
-import {AuthService} from "../shared/services/auth.service";
 
 @NgModule({
     imports: [
@@ -26,10 +25,14 @@ import {AuthService} from "../shared/services/auth.service";
     declarations: [
         PoemsListComponent,
         PoemsComponent,
-        SidebarComponent,
-        HeaderComponent,
         PoemsPagedListComponent,
-        PoemItemComponent
+        PoemItemComponent,
+        SidebarComponent,
+        HeaderComponent
+    ],
+    exports: [
+        SidebarComponent,
+        HeaderComponent
     ],
     providers: [
         PoemService

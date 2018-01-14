@@ -1,14 +1,16 @@
+from django.contrib.auth.models import User
+from oauth2_provider.contrib.rest_framework import OAuth2Authentication, permissions
 from rest_framework import generics
 from oauth2_provider.models import Application
 
-from poems.api.serializers import AuthorSerializer, PoemSerializer, ApplicationSerializer
+from poems.api.serializers import AuthorSerializer, PoemSerializer, ApplicationSerializer, UserProfileSerializer
 from poems.models import Author, Poem
 
 
 class ApplicationView(generics.ListAPIView):
     authentication_classes = []
     serializer_class = ApplicationSerializer
-    
+
     def get_queryset(self):
         name = self.kwargs['name']
         return Application.objects.filter(name=name)
@@ -36,4 +38,13 @@ class PoemsView(generics.ListAPIView):
     authentication_classes = []
     queryset = Poem.objects.all()
     serializer_class = PoemSerializer
+
+
+# User profile view
+class UserProfileView(generics.RetrieveAPIView):
+    authentication_classes = [OAuth2Authentication]
+    permissions_class = [permissions.IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = UserProfileSerializer
+    lookup_field = 'username'
 

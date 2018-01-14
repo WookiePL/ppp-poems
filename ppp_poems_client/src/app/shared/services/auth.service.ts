@@ -16,17 +16,14 @@ export class AuthService {
     }
 
     private initialize(): void {
-        this.getAndSaveApplicationInfo();
         this.getTokenFromLocalStorage();
 
     }
 
-    private getAndSaveApplicationInfo() {
+    getAndSaveApplicationInfo() {
         this.getApplication()
             .subscribe(data => {
                 this.applicationInfo = data[0];
-                console.log(this.applicationInfo.client_id);
-                console.log(this.applicationInfo.client_secret);
             }, err => {
                 this.errorMessage = <any> err;
                 console.log("Error occured.");
@@ -95,12 +92,24 @@ export class AuthService {
         localStorage.setItem("token", JSON.stringify(token))
     }
 
+    getAuthorizationRequestHeader(){
+        return new HttpHeaders().set("Authorization", "Bearer " + this.getAccessToken())
+    }
+
     getAccessToken(){
-        return this.token.access_token;
+        if(this.token){
+            return this.token.access_token;
+        }else{
+            return null;
+        }
     }
 
     getUser(){
-        return this.token.user;
+        if(this.token){
+            return this.token.user;
+        }else{
+            return null;
+        }
     }
 
 }

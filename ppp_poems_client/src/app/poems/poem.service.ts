@@ -9,10 +9,11 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {AuthService} from "../shared/services/auth.service";
 
 @Injectable()
 export class PoemService {
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private _authService: AuthService) {
     }
 
     getPoems(): Observable<IPoem[]> {
@@ -23,6 +24,6 @@ export class PoemService {
 
     private handleError(error: HttpErrorResponse) {
         console.error(error);
-        return Observable.throw(error.message || 'Server error');
+        return Observable.throw(error || 'Server error');
     }
 }
