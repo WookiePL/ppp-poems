@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from oauth2_provider.models import Application
+from rest_framework.validators import UniqueValidator
 
 from poems.models import Author, Poem, Rate
 
@@ -15,6 +16,19 @@ class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email')
+
+
+class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, min_length=6)
+    email = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
+
+    def create(self, validated_data):
+        user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'])
+        return user
+
+    class Meta:
+        model = User
+        fields = ('email', 'username', 'password')
 
 
 class AuthorSerializer(serializers.ModelSerializer):
