@@ -40,15 +40,23 @@ class AuthorSerializer(serializers.ModelSerializer):
 class PoemSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
     rating = serializers.SerializerMethodField()
+    rating_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Poem
         fields = ('id', 'title', 'description', 'content', 'author', 'creation_time', 'modification_time',
-                  'user', 'rating')
+                  'user', 'rating', 'rating_count')
+
+    @staticmethod
+    def get_rating_count(obj):
+        return len(obj.rates.all())
 
     @staticmethod
     def get_rating(obj):
-        return sum(c.rating for c in obj.rates.all()) / len(obj.rates.all())
+        if len(obj.rates.all()):
+            return sum(c.rating for c in obj.rates.all()) / len(obj.rates.all())
+        else:
+            return 0
 
 
 class ApplicationSerializer(serializers.ModelSerializer):

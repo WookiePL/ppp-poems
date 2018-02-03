@@ -9,6 +9,7 @@ export interface IPoem {
     description: string;
     content: string;
     rating: number;
+    rating_count: number;
     author: number;
     creation_time: string;
     modification_time: string;

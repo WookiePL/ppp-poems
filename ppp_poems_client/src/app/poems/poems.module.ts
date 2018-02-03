@@ -6,12 +6,15 @@ import {HeaderComponent} from "../layout/components/header/header.component";
 import {SidebarComponent} from "../layout/components/sidebar/sidebar.component";
 import {PoemsRoutingModule} from "./poems-routing.module";
 import {TranslateModule} from "@ngx-translate/core";
-import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
-import {PageHeaderModule} from "../shared";
+import {NgbDropdownModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {PageHeaderModule, SharedPipesModule} from "../shared";
 import {PoemService} from "./poem.service";
 import { PoemsPagedListComponent } from './poems-paged-list/poems-paged-list.component';
 import { PoemItemComponent } from './poem-item/poem-item.component';
 import {StarRatingModule} from "angular-star-rating";
+import { PoemDetailComponent } from './poem-detail/poem-detail.component';
+import { PoemRateDialogComponent } from './poem-rate-dialog/poem-rate-dialog.component';
+import {PoemDetailResolverService} from "./poem-detail-resolver.service";
 
 @NgModule({
     imports: [
@@ -19,8 +22,10 @@ import {StarRatingModule} from "angular-star-rating";
         PoemsRoutingModule,
         TranslateModule,
         NgbDropdownModule.forRoot(),
+        NgbModule.forRoot(),
         PageHeaderModule,
-        StarRatingModule
+        StarRatingModule,
+        SharedPipesModule,
     ],
     declarations: [
         PoemsListComponent,
@@ -28,14 +33,17 @@ import {StarRatingModule} from "angular-star-rating";
         PoemsPagedListComponent,
         PoemItemComponent,
         SidebarComponent,
-        HeaderComponent
+        HeaderComponent,
+        PoemDetailComponent,
+        PoemRateDialogComponent,
     ],
     exports: [
         SidebarComponent,
         HeaderComponent
     ],
     providers: [
-        PoemService
+        PoemService,
+        PoemDetailResolverService
     ]
 })
 export class PoemsModule {
