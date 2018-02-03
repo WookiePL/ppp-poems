@@ -39,6 +39,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class PoemSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
+    author = AuthorSerializer(many=False, read_only=False)
     rating = serializers.SerializerMethodField()
     rating_count = serializers.SerializerMethodField()
 
