@@ -3,13 +3,20 @@ interface IShortUser {
     username: string;
 }
 
+interface IAuthor {
+    id: number;
+    name: string;
+    surname: string;
+}
+
 export interface IPoem {
     id: number;
     title: string;
     description: string;
     content: string;
     rating: number;
-    author: number;
+    rating_count: number;
+    author: IAuthor;
     creation_time: string;
     modification_time: string;
     user: IShortUser;

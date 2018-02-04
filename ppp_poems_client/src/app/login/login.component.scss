@@ -83,6 +83,8 @@ $topnav-background-color: #222;
         input:-ms-input-placeholder {
             color: rgba(255, 255, 255, 0.6) !important;
         }
+
+
     }
     .form-content {
         padding: 40px 0;
@@ -91,5 +93,16 @@ $topnav-background-color: #222;
         -webkit-border-radius: 50%;
         border-radius: 50%;
         border: 2px solid #fff;
+    }
+
+    .invalid {
+        color: rgb(236, 3, 1);
+        .input-underline{
+            border-bottom: 2px solid #9f0301;
+        }
+
+        .input-underline:focus {
+            border-bottom: 2px solid rgb(236, 3, 1);
+        }
     }
 }

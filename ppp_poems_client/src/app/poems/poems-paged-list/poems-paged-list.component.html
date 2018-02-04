@@ -1,9 +1,9 @@
 <div>
-    <app-page-header [heading]="'Wiersze'" [icon]="'fa-list'"></app-page-header>
+    <app-page-header [heading]="'Poems'" [icon]="'fa-newspaper-o'"></app-page-header>
 
-    <ul class="list-group">
-        <li *ngFor="let poem of poems" class="card list-group-item flex-column align-items-start">
-            <app-poem-item [poem]="poem"></app-poem-item>
+    <ul class="list-group" >
+        <li *ngFor="let poem of poems" class="rounded-0 border-left-0 border-right-0 card list-group-item flex-column align-items-start">
+            <app-poem-item  [poem]="poem"></app-poem-item>
         </li>
 
     </ul>

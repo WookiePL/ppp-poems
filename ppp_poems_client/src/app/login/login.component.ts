@@ -12,14 +12,15 @@ import {AuthService} from "../shared/services/auth.service";
 })
 
 export class LoginComponent implements OnInit{
-    ngOnInit(): void {
-    }
     constructor(public router: Router, private _authService: AuthService) {
     }
     name: string;
     password: string;
-
     private errorMessage: string;
+
+    ngOnInit(): void {
+        this._authService.getAndSaveApplicationInfo();
+    }
 
     login() {
         this._authService.login(this.name, this.password)
