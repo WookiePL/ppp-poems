@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IPoem} from "../poem";
+import {IPoem, IComment} from "../poem";
 import {PoemService} from "../poem.service";
 import {ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
 
@@ -37,6 +37,24 @@ export class PoemDetailComponent implements OnInit {
     ngOnInit() {
         this.rated = false;
         this.poem = this.route.snapshot.data['poem'];
+
+        //TODO: remove mock, use real data
+        this.poem.comments = [{
+          author: 'Janusz Pawlacz',
+          id: 10001,
+          content: 'Elo, ziom co to pisał to chyba jakiś nayebany był!',
+          date: '2018-01-01 21:37'
+        }, {
+          author: 'Janusz Biznesu',
+          id: 10002,
+          content: 'Dla mnie spoko, 11/9. Pozdrawiam cieplutko!',
+          date: '2018-01-01 22:13'
+        }, {
+          author: 'Janusz Cebulla',
+          id: 10003,
+          content: 'Eh, coraz więcej amatorów pcha się do zabawy... mam nadzieję, że wejdzie ta ustawa i wiersze pisać będzie można tylko z licencją, bo niektórym to brak RIGCZU',
+          date: '2018-01-01 23:59'
+        }];
     }
 
     rate() {

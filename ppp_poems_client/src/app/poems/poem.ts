@@ -9,6 +9,13 @@ interface IAuthor {
     surname: string;
 }
 
+export interface IComment {
+    id: number;
+    content: string;
+    author: string;
+    date: string;
+}
+
 export interface IPoem {
     id: number;
     title: string;
@@ -20,4 +27,5 @@ export interface IPoem {
     creation_time: string;
     modification_time: string;
     user: IShortUser;
+    comments: Array<IComment>;
 }

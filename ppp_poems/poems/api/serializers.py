@@ -50,12 +50,13 @@ class PoemSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_rating_count(obj):
-        return len(obj.rates.all())
+        return len(Rate.objects.filter(poem_id__exact=obj.id))
 
     @staticmethod
     def get_rating(obj):
-        if len(obj.rates.all()):
-            return sum(c.rating for c in obj.rates.all()) / len(obj.rates.all())
+        size = len(Rate.objects.filter(poem_id__exact=obj.id))
+        if size:
+            return sum(c.rating for c in Rate.objects.filter(poem_id__exact=obj.id)) / size
         else:
             return 0
 
