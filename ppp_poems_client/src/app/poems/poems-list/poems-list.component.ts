@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IPoem} from "../poem";
+import {IComment, IPoem} from "../poem";
 import {PoemService} from "../poem.service";
 
 @Component({
@@ -10,6 +10,7 @@ export class PoemsListComponent implements OnInit {
 
     poems: IPoem[] = [];
     private errorMessage: string;
+    private opinionComment : IComment;
 
     constructor(private _poemService: PoemService) {
     }
