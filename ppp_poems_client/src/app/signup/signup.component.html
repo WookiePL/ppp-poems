@@ -1,26 +1,82 @@
 <div class="login-page" [@routerTransition]>
     <div class="row justify-content-md-center">
         <div class="col-md-4">
-            <img class="user-avatar" src="assets/images/logo.png" width="150px" />
+            <img class="user-avatar" src="assets/images/logo.png" width="150px"/>
             <h1>SB Admin BS4 Angular4</h1>
-            <form role="form">
+            <form (ngSubmit)="signup()" [formGroup]="signupForm" role="form">
                 <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Full Name">
+                    <div class="form-group"
+                         [ngClass]="{'invalid':(signupForm.get('username').touched || signupForm.get('username').dirty) && !signupForm.get('username').valid }">
+                        <input type="text"
+                               class="form-control input-underline input-lg"
+                               id="username"
+                               placeholder="Username"
+                               formControlName="username"/>
+                        <small
+                            *ngIf="(signupForm.get('username').touched || signupForm.get('username').dirty) && signupForm.get('username').errors && signupForm.get('username').errors.required">
+                            Provide username.
+                        </small>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Email">
+                    <div class="form-group"
+                         [ngClass]="{'invalid':(signupForm.get('email').touched || signupForm.get('email').dirty) && !signupForm.get('email').valid }">
+                        <input type="text"
+                               class="form-control input-underline input-lg"
+                               id="email"
+                               placeholder="Email"
+                               formControlName="email"/>
+                        <span
+                            *ngIf="(signupForm.get('email').touched || signupForm.get('email').dirty) && signupForm.get('email').errors">
+                            <small *ngIf="signupForm.get('email').errors.required">
+                                Provide email address.
+                            </small>
+                            <small *ngIf="signupForm.get('email').errors.email && !signupForm.get('email').errors?.required">
+                                Given email has invalid format.
+                            </small>
+                        </span>
+
+
                     </div>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+                    <div class="form-group"
+                         [ngClass]="{'invalid':(signupForm.get('password').touched || signupForm.get('password').dirty) && !signupForm.get('password').valid }">
+                        <input type="password"
+                               class="form-control input-underline input-lg"
+                               id="pass1"
+                               placeholder="Password"
+                               formControlName="password"/>
+                        <span
+                            *ngIf="(signupForm.get('password').touched || signupForm.get('password').dirty) && (signupForm.get('password').errors || signupForm.errors)">
+                            <small
+                                *ngIf="signupForm.get('password').errors?.required">
+                                Password is required.
+                            </small>
+                            <small *ngIf="signupForm.get('password').errors?.minlength">
+                                Password should contain at least 6 characters.
+                            </small>
+                        </span>
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Repeat Password">
+                    <div class="form-group"
+                         [ngClass]="{'invalid':(signupForm.get('password_repeat').touched || signupForm.get('password_repeat').dirty) && (!signupForm.get('password_repeat').valid || signupForm.errors)}">
+                        <input type="password"
+                               class="form-control input-underline input-lg"
+                               id="pass2"
+                               placeholder="Repeat Password"
+                               formControlName="password_repeat"/>
+                        <span
+                            *ngIf="(signupForm.get('password_repeat').touched || signupForm.get('password_repeat').dirty) && (signupForm.get('password_repeat').errors || signupForm.errors)">
+                            <small
+                                *ngIf="signupForm.get('password_repeat').errors?.required">
+                                Confirm password.
+                            </small>
+                            <small *ngIf="signupForm.errors?.match && !signupForm.get('password_repeat').errors?.required">
+                                Passwords are not same.
+                            </small>
+                        </span>
                     </div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']"> Register </a>&nbsp;
+                <button class="btn rounded-btn" [disabled]="!signupForm.valid" type="submit"> Register</button>&nbsp;
+
                 <a class="btn rounded-btn" [routerLink]="['/login']"> Log in </a>
             </form>
         </div>

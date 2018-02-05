@@ -3,7 +3,8 @@ from oauth2_provider.contrib.rest_framework import OAuth2Authentication, permiss
 from rest_framework import generics
 from oauth2_provider.models import Application
 
-from poems.api.serializers import AuthorSerializer, PoemSerializer, ApplicationSerializer, UserProfileSerializer
+from poems.api.serializers import AuthorSerializer, PoemSerializer, ApplicationSerializer, UserProfileSerializer, \
+    UserSerializer
 from poems.models import Author, Poem
 
 
@@ -47,4 +48,10 @@ class UserProfileView(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserProfileSerializer
     lookup_field = 'username'
+
+
+class UserRegistration(generics.CreateAPIView):
+    authentication_classes = []
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 

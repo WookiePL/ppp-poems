@@ -1,13 +1,13 @@
 <div class="card-body">
     <div class="d-flex w-100 justify-content-between">
-        <a href="#">
+        <a [routerLink]="['/poem', poem.id]">
             <h4 class="mb-3">{{ poem.title }}</h4>
         </a>
         <small class="text-muted">{{ poem.creation_time |date: 'short'}}   </small>
     </div>
     <blockquote class="blockquote">
-        <p class="mb-0">{{ poem.content }}</p>
-        <footer class="blockquote-footer">{{ poem.author }}</footer>
+        <p style="white-space: pre-wrap;" class="mb-0">{{ poem.content}}</p>
+        <footer class="blockquote-footer">{{ poem.author.name }} {{ poem.author.surname }}</footer>
     </blockquote>
 
     <div class="d-flex w-100 justify-content-between">

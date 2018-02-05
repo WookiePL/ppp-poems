@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from oauth2_provider.models import Application
+from rest_framework.validators import UniqueValidator
 
 from poems.models import Author, Poem, Rate
 
@@ -17,6 +18,19 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email')
 
 
+class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, min_length=6)
+    email = serializers.CharField(validators=[UniqueValidator(queryset=User.objects.all())])
+
+    def create(self, validated_data):
+        user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'])
+        return user
+
+    class Meta:
+        model = User
+        fields = ('email', 'username', 'password')
+
+
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
@@ -25,16 +39,26 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class PoemSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
+    author = AuthorSerializer(many=False, read_only=False)
     rating = serializers.SerializerMethodField()
+    rating_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Poem
         fields = ('id', 'title', 'description', 'content', 'author', 'creation_time', 'modification_time',
-                  'user', 'rating')
+                  'user', 'rating', 'rating_count')
+
+    @staticmethod
+    def get_rating_count(obj):
+        return len(Rate.objects.filter(poem_id__exact=obj.id))
 
     @staticmethod
     def get_rating(obj):
-        return sum(c.rating for c in obj.rates.all()) / len(obj.rates.all())
+        size = len(Rate.objects.filter(poem_id__exact=obj.id))
+        if size:
+            return sum(c.rating for c in Rate.objects.filter(poem_id__exact=obj.id)) / size
+        else:
+            return 0
 
 
 class ApplicationSerializer(serializers.ModelSerializer):
