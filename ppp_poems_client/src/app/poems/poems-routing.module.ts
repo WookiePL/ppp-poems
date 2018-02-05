@@ -5,6 +5,7 @@ import {PoemsListComponent} from "./poems-list/poems-list.component";
 import {PoemsPagedListComponent} from "./poems-paged-list/poems-paged-list.component";
 import {PoemDetailComponent} from "./poem-detail/poem-detail.component";
 import {PoemDetailResolverService} from "./poem-detail-resolver.service";
+import {PoemsAddComponent} from "./poems-add/poems-add.component";
 
 const routes: Routes = [
     {
@@ -22,6 +23,9 @@ const routes: Routes = [
             },
             {
                 path: 'user', loadChildren: '../user/user.module#UserModule'
+            },
+            {
+                path: 'poems-add', component: PoemsAddComponent
             }
         ]
     },

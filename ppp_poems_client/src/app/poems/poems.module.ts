@@ -15,6 +15,7 @@ import {StarRatingModule} from "angular-star-rating";
 import { PoemDetailComponent } from './poem-detail/poem-detail.component';
 import { PoemRateDialogComponent } from './poem-rate-dialog/poem-rate-dialog.component';
 import {PoemDetailResolverService} from "./poem-detail-resolver.service";
+import {PoemsAddComponent} from "./poems-add/poems-add.component";
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import {PoemDetailResolverService} from "./poem-detail-resolver.service";
         HeaderComponent,
         PoemDetailComponent,
         PoemRateDialogComponent,
+        PoemsAddComponent
     ],
     exports: [
         SidebarComponent,
