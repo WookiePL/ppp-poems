@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {AuthService} from "../shared/services/auth.service";
+import {IRate} from "./rate";
 
 @Injectable()
 export class PoemService {
@@ -51,5 +52,34 @@ export class PoemService {
     private handleError(error: HttpErrorResponse) {
         console.error(error);
         return Observable.throw(error || 'Server error');
+    }
+
+    ratePoem(poem_id: number, user: string, rating: number, updateOnly: boolean, rateId: number): Observable<IRate>{
+        console.log(updateOnly);
+        let headers = new HttpHeaders().set("Content-Type", "application/json");
+        if( updateOnly === true){
+            return this.http.patch<IRate>('/api/rate/'+rateId+'/', JSON.stringify({
+                poem: poem_id,
+                userName: user,
+                rating: rating
+            }), {
+                responseType: "json",
+                headers: headers
+            })
+                .do(response => console.log('postRate' + JSON.stringify(response)))
+                .catch(this.handleError);
+        }else{
+            return this.http.post<IRate>('/api/rate/create', JSON.stringify({
+                poem: poem_id,
+                userName: user,
+                rating: rating
+            }), {
+                responseType: "json",
+                headers: headers
+            })
+                .do(response => console.log('postRate' + JSON.stringify(response)))
+                .catch(this.handleError);
+
+        }
     }
 }

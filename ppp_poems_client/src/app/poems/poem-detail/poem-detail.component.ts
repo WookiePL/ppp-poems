@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {IPoem, IComment} from "../poem";
-import {PoemService} from "../poem.service";
+import {AuthService} from "../../shared/services/auth.service";
 import {ActivatedRoute, ActivatedRouteSnapshot, Params, RouterStateSnapshot} from "@angular/router";
+import {isUndefined} from "util";
+import {RatingChangedEvent} from "../poem-rate-dialog/poem-rate-dialog.component";
+import {PoemService} from "../poem.service";
 
 @Component({
     selector: 'app-poem-detail',
@@ -10,35 +13,48 @@ import {ActivatedRoute, ActivatedRouteSnapshot, Params, RouterStateSnapshot} fro
 })
 export class PoemDetailComponent implements OnInit {
 
-    rated :boolean;
+    rated: boolean;
     rating: number;
     comments: Array<IComment>;
     public poem: IPoem;
-    // public poem = {
-    //     content: "I w Ostrej świecisz Bramie! Ty, co gród zamkowy\n" +
-    //     "Nowogródzki ochraniasz z jego wiernym ludem!\n" +
-    //     "Jak mnie dziecko do zdrowia powróciłaś cudem\n" +
-    //     "(— Gdy od płaczącej matki, pod Twoją opiekę\n" +
-    //     "Ofiarowany martwą podniosłem powiekę;\n" +
-    //     "I zaraz mogłem pieszo, do Twych świątyń progu",
-    //     description:"example",
-    //     creation_time: new Date().toDateString(),
-    //     rating : 4.5,
-    //     author : 1,
-    //     id: 10,
-    //     title: "Inwokacja",
-    //     user: {
-    //         username: "maciek"
-    //     }
-    // };
-    constructor(private route: ActivatedRoute, private poemService: PoemService) {
+    public userRating: number;
+    public update: boolean = false;
+    public rateId: number;
+    private userRate;
 
+    constructor(private route: ActivatedRoute, private authService: AuthService, private poemService: PoemService) {
+
+    }
+
+    isLoggedIn() {
+        return this.authService.isLoggedIn();
+    }
+
+    getUser() {
+        return this.authService.getUser();
+    }
+
+    findUserRating() {
+        if (!isUndefined(this.poem.rate_set)) {
+            this.userRate = this.poem.rate_set.find(rt => rt.user.username === this.getUser());
+
+            if (this.userRate) {
+                this.userRating = this.userRate.rating;
+                this.rateId = this.userRate.id;
+                console.log(this.rateId);
+                this.rated = true;
+                this.update = true;
+            }
+        }
     }
 
     ngOnInit() {
         this.rated = false;
         this.poem = this.route.snapshot.data['poem'];
         this.comments = this.route.snapshot.data['comments'];
+        console.log(this.poem.rate_set);
+
+        this.findUserRating();
     }
 
     submitComment(username: string, content: string) {
@@ -46,15 +62,14 @@ export class PoemDetailComponent implements OnInit {
         this.poemService.submitComment(username, content, this.poem.id).subscribe(
             (res) => {
                 this.poemService.getComments(this.poem.id).subscribe(
-            (res) => this.comments = res
+                    (res) => this.comments = res
                 );
             }
         );
     }
 
-    rate() {
-        console.log("rate");
-        this.rated = true;
-    }
+    refreshData($event: RatingChangedEvent) {
 
+    }
 }
+
