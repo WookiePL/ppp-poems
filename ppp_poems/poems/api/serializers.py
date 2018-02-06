@@ -43,16 +43,37 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ('id', 'content', 'user', 'date', 'poem_id')
 
 
+class RateSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+    userName = serializers.CharField(source='user.username', write_only=True, allow_null=False)
+    poem = serializers.IntegerField(source='poem.id', write_only=True, allow_null=False)
+
+    def update(self, instance, validated_data):
+        instance.rating = validated_data['rating']
+        instance.save()
+        return instance
+
+    def create(self, validated_data):
+        rat = Rate.objects.create(rating=validated_data.pop('rating'), poem_id=validated_data.pop('poem')['id'],
+                                  user_id=User.objects.get(username__exact=validated_data.pop('user')['username']).id)
+        return rat
+
+    class Meta:
+        model = Rate
+        fields = ('user', 'rating', 'poem', 'userName')
+
+
 class PoemSerializer(serializers.ModelSerializer):
     user = UserSerializer(many=False, read_only=True)
     author = AuthorSerializer(many=False, read_only=False)
+    rate_set = RateSerializer(many=True, read_only=True)
     rating = serializers.SerializerMethodField()
     rating_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Poem
         fields = ('id', 'title', 'description', 'content', 'author', 'creation_time', 'modification_time',
-                  'user', 'rating', 'rating_count')
+                  'user', 'rating', 'rating_count', 'rate_set')
 
     @staticmethod
     def get_rating_count(obj):
