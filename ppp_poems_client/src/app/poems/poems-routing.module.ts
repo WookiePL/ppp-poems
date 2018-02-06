@@ -6,6 +6,7 @@ import {PoemsPagedListComponent} from "./poems-paged-list/poems-paged-list.compo
 import {PoemDetailComponent} from "./poem-detail/poem-detail.component";
 import {PoemDetailResolverService} from "./poem-detail-resolver.service";
 import {PoemsAddComponent} from "./poems-add/poems-add.component";
+import {PoemCommentsResolverService} from "./poem-comments-resolver.service";
 
 const routes: Routes = [
     {
@@ -19,7 +20,10 @@ const routes: Routes = [
             },
             {
                 path: 'poem/:id', component: PoemDetailComponent,
-                resolve: {poem: PoemDetailResolverService}
+                resolve: {
+                    poem: PoemDetailResolverService,
+                    comments: PoemCommentsResolverService
+                }
             },
             {
                 path: 'user', loadChildren: '../user/user.module#UserModule'

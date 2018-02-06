@@ -31,13 +31,13 @@
                 <div class="row">
                     <label for="userName" class="col-sm-2 col-form-label">Your name:</label>
                     <div class="col-sm-4">
-                        <input type="text" class="form-control form-control-sm" id="userName" placeholder="What is Your name?">
+                        <input  type="text" #userName class="form-control form-control-sm" id="userName" placeholder="What is Your name?">
                     </div>
                 </div>
                 <div class="row">
                     <label for="userComment" class="col-sm-2 col-form-label">Opinion:</label>
                     <div class="col-sm-4">
-                        <textarea class="form-control form-control-sm" style="resize: vertical" rows="3" id="userComment" placeholder="What is Your opinion?"></textarea>
+                        <textarea  #userComment class="form-control form-control-sm" style="resize: vertical" rows="3" id="userComment" placeholder="What is Your opinion?"></textarea>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -46,13 +46,14 @@
                     </div>
                     <label class="form-check-label" for="notRobotCheckbox">I'm absolutely not a robot!</label>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm" [disabled]="!isARobot">Submit</button>
+                <button (click)="submitComment(userName.value, userComment.value)" type="submit" class="btn btn-primary btn-sm" [disabled]="!isARobot">Submit</button>
             </div>
+
         <hr>
             <div class="card">
-                <h5 class="card-header">{{ poem.comments.length }} comments</h5>
-                <div class="card-body" *ngFor="let comm of poem.comments">
-                    <span class="fa fa-comment"></span><small> #{{ comm.id }} {{ comm.author }}<span class="pull-right">{{ comm.date }}</span></small>
+                <h5 class="card-header">{{ comments.length }} comments</h5>
+                <div class="card-body" *ngFor="let comm of comments">
+                    <span class="fa fa-comment"></span><small> #{{ comm.id }} {{ comm.user }}<span class="pull-right">{{ comm.date }}</span></small>
                     <p class="card-text">{{ comm.content }}</p>
                 </div>
             </div>

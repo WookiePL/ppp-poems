@@ -4,8 +4,8 @@ from rest_framework import generics
 from oauth2_provider.models import Application
 
 from poems.api.serializers import AuthorSerializer, PoemSerializer, ApplicationSerializer, UserProfileSerializer, \
-    UserSerializer
-from poems.models import Author, Poem
+    UserSerializer, RateSerializer, CommentSerializer
+from poems.models import Author, Poem, Rate, Comment
 
 
 class ApplicationView(generics.ListAPIView):
@@ -41,6 +41,17 @@ class PoemsView(generics.ListAPIView):
     serializer_class = PoemSerializer
 
 
+class RateView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = []
+    queryset = Rate.objects.all()
+    serializer_class = RateSerializer
+
+
+class RateCreateView(generics.CreateAPIView):
+    authentication_classes = []
+    queryset = Rate.objects.all()
+    serializer_class = RateSerializer
+
 # User profile view
 class UserProfileView(generics.RetrieveAPIView):
     authentication_classes = [OAuth2Authentication]
@@ -55,3 +66,21 @@ class UserRegistration(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+class CommentViewCreate(generics.CreateAPIView):
+    authentication_classes = []
+    #queryset = Comment.objects.all()
+    def get_queryset(self):
+        poem_id = self.kwargs['poem_id']
+        return Comment.objects.filter(poem_id=poem_id)
+
+    serializer_class = CommentSerializer
+
+
+class CommentView(generics.ListAPIView):
+    authentication_classes = []
+    def get_queryset(self):
+        poem_id = self.kwargs['poem_id']
+        return Comment.objects.filter(poem_id=poem_id)
+
+    serializer_class = CommentSerializer

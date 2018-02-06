@@ -16,6 +16,7 @@ import { PoemDetailComponent } from './poem-detail/poem-detail.component';
 import { PoemRateDialogComponent } from './poem-rate-dialog/poem-rate-dialog.component';
 import {PoemDetailResolverService} from "./poem-detail-resolver.service";
 import {PoemsAddComponent} from "./poems-add/poems-add.component";
+import {PoemCommentsResolverService} from "./poem-comments-resolver.service";
 
 @NgModule({
     imports: [
@@ -45,7 +46,8 @@ import {PoemsAddComponent} from "./poems-add/poems-add.component";
     ],
     providers: [
         PoemService,
-        PoemDetailResolverService
+        PoemDetailResolverService,
+        PoemCommentsResolverService
     ]
 })
 export class PoemsModule {
