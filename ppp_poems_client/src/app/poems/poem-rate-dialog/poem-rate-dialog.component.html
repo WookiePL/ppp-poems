@@ -1,7 +1,7 @@
 <p class="btn-link mb-0" (click)="open(content)">Rate this</p>
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-body">
-        <star-rating-comp [starType]="'svg'" ></star-rating-comp>
+        <star-rating-comp (onRatingChange)="ratingClicked($event)" [starType]="'svg'" ></star-rating-comp>
     </div>
     <div class="modal-footer p-2">
         <button type="button" class="btn btn-sm btn-primary" (click)="c('Rate! click')">Rate!</button>

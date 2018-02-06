@@ -3,6 +3,7 @@ import {IComment, IPoem} from "../poem";
 import {PoemService} from "../poem.service";
 
 @Component({
+    selector: 'app-poems-list',
     templateUrl: './poems-list.component.html',
     styleUrls: ['./poems-list.component.scss']
 })

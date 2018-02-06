@@ -8,6 +8,7 @@ import {PageHeaderModule} from "../shared";
 import {UserRoutingModule} from "./user-routing.module";
 import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 import {TranslateModule} from "@ngx-translate/core";
+import {PoemsModule} from "../poems/poems.module";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {TranslateModule} from "@ngx-translate/core";
         PageHeaderModule,
         TranslateModule,
         UserRoutingModule,
-        NgbDropdownModule.forRoot()
+        NgbDropdownModule.forRoot(),
+        PoemsModule
     ],
     declarations: [UserProfileComponent, UserComponent],
     providers: [UserService, UserResolverService]

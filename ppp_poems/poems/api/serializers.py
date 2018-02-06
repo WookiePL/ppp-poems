@@ -66,7 +66,7 @@ class RateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rate
-        fields = ('user', 'rating', 'poem', 'userName')
+        fields = ('user', 'rating', 'poem', 'userName', 'id')
 
 
 class PoemSerializer(serializers.ModelSerializer):

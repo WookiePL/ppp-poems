@@ -16,10 +16,13 @@
 
         <div class="card-footer mb-0">
         <div class="row pl-4">
-            <div class="col-md-8 row">
+            <div class="col-md-8 row" *ngIf="isLoggedIn()">
                 <p class=" text-muted mb-0 mr-2"  *ngIf="!rated" >Not rated by you!</p>
                 <star-rating-comp class="mb-0" *ngIf="rated" [staticColor]="'ok'" [showHalfStars]="true" [readOnly]="true" [starType]="'svg'" [rating]="poem.rating"></star-rating-comp>
-                <app-poem-rate-dialog></app-poem-rate-dialog>
+                <app-poem-rate-dialog (stateChanged)="refreshData($event)" [rateId]="rateId" [poem_id]="poem.id" [user]="getUser()" [updateOnly]="update"></app-poem-rate-dialog>
+            </div>
+            <div class="col-md-8 row" *ngIf="!isLoggedIn()">
+                <p class=" text-muted mb-0 mr-2"   >Log in to rate</p>
             </div>
             <div class="text-muted col-md-4 pr-0">
                 <p class="mb-0 pull-right">Added by: {{ poem.user.username }}, {{ poem.creation_time | date: 'short' }}</p>

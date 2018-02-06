@@ -1,3 +1,5 @@
+import {IUserProfile} from "../user/user-profile";
+
 interface IShortUser {
     id: number;
     username: string;
@@ -17,6 +19,13 @@ export interface IComment {
     poem_id: number;
 }
 
+interface IDisplayRate {
+    rating: number;
+    user: IUserProfile;
+    poem: number;
+    id: number;
+}
+
 export interface IPoem {
     id: number;
     title: string;
@@ -24,6 +33,7 @@ export interface IPoem {
     content: string;
     rating: number;
     rating_count: number;
+    rate_set: Array<IDisplayRate>;
     author: IAuthor;
     creation_time: string;
     modification_time: string;

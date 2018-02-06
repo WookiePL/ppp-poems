@@ -42,7 +42,8 @@ import {PoemCommentsResolverService} from "./poem-comments-resolver.service";
     ],
     exports: [
         SidebarComponent,
-        HeaderComponent
+        HeaderComponent,
+        PoemsListComponent
     ],
     providers: [
         PoemService,
