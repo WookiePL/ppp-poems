@@ -38,6 +38,12 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
+    poem_id = serializers.IntegerField(source='poem.id', write_only=True, allow_null=False)
+
+    def create(self, validated_data):
+        return Comment.objects.create(content=validated_data.pop('content'), poem_id=validated_data.pop('poem')['id'],
+                                  user=validated_data.pop('user'), date=validated_data.pop('date'))
+
     class Meta:
         model = Comment
         fields = ('id', 'content', 'user', 'date', 'poem_id')

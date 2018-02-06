@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {AuthService} from "../shared/services/auth.service";
 
 @Injectable()
@@ -33,6 +33,19 @@ export class PoemService {
             headers: this._authService.getAuthorizationRequestHeader()
         }).do(data => console.log('getComments' + JSON.stringify(data)))
           .catch(this.handleError);
+    }
+
+    submitComment(user: string, content: string, poem_id: number) : any {
+        const body = new HttpParams()
+            .set('user', user)
+            .set('content', content)
+            .set('poem_id', ''+poem_id)
+            .set('date', new Date().toISOString().slice(0,10));
+        return this.http.post('/api/comment/', body,{
+            headers: this._authService.getAuthorizationRequestHeader()
+        }).do(data => console.log('getComments' + JSON.stringify(data)))
+          .catch(this.handleError);
+
     }
 
     private handleError(error: HttpErrorResponse) {

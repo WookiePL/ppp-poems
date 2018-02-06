@@ -67,15 +67,18 @@ class UserRegistration(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 
-class CommentView(generics.RetrieveUpdateDestroyAPIView):
+class CommentViewCreate(generics.CreateAPIView):
     authentication_classes = []
-    queryset = Comment.objects.all()
+    #queryset = Comment.objects.all()
+    def get_queryset(self):
+        poem_id = self.kwargs['poem_id']
+        return Comment.objects.filter(poem_id=poem_id)
+
     serializer_class = CommentSerializer
 
 
 class CommentView(generics.ListAPIView):
     authentication_classes = []
-    #queryset = Comment.objects.all()
     def get_queryset(self):
         poem_id = self.kwargs['poem_id']
         return Comment.objects.filter(poem_id=poem_id)

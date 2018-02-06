@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_swagger.views import get_swagger_view
 from poems.api.views import AuthorView, PoemView, PoemsView, AuthorsView, ApplicationView, UserProfileView, \
-    UserRegistration, RateView, RateCreateView, CommentView
+    UserRegistration, RateView, RateCreateView, CommentView, CommentViewCreate
 
 admin.autodiscover()
 
@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^api/user/create$', UserRegistration.as_view()),
     url(r'^api/application/(?P<name>.+)/$', ApplicationView.as_view()),
     url(r'^api/comment/(?P<poem_id>.+)/$', CommentView.as_view()),
+    url(r'^api/comment/$', CommentViewCreate.as_view()),
     url(r'^api/o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 ]
 

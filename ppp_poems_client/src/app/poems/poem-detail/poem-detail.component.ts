@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IPoem, IComment} from "../poem";
 import {PoemService} from "../poem.service";
-import {ActivatedRoute, ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRoute, ActivatedRouteSnapshot, Params, RouterStateSnapshot} from "@angular/router";
 
 @Component({
     selector: 'app-poem-detail',
@@ -31,7 +31,7 @@ export class PoemDetailComponent implements OnInit {
     //         username: "maciek"
     //     }
     // };
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private poemService: PoemService) {
 
     }
 
@@ -39,7 +39,17 @@ export class PoemDetailComponent implements OnInit {
         this.rated = false;
         this.poem = this.route.snapshot.data['poem'];
         this.comments = this.route.snapshot.data['comments'];
+    }
 
+    submitComment(username: string, content: string) {
+        console.log('comment submited! username: ' + username + ', content: ' + content);
+        this.poemService.submitComment(username, content, this.poem.id).subscribe(
+            (res) => {
+                this.poemService.getComments(this.poem.id).subscribe(
+            (res) => this.comments = res
+                );
+            }
+        );
     }
 
     rate() {
