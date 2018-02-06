@@ -12,8 +12,9 @@ interface IAuthor {
 export interface IComment {
     id: number;
     content: string;
-    author: string;
+    user: string;
     date: string;
+    poem_id: number;
 }
 
 export interface IPoem {

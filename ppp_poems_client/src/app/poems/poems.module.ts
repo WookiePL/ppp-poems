@@ -15,6 +15,7 @@ import {StarRatingModule} from "angular-star-rating";
 import { PoemDetailComponent } from './poem-detail/poem-detail.component';
 import { PoemRateDialogComponent } from './poem-rate-dialog/poem-rate-dialog.component';
 import {PoemDetailResolverService} from "./poem-detail-resolver.service";
+import {PoemCommentsResolverService} from "./poem-comments-resolver.service";
 
 @NgModule({
     imports: [
@@ -43,7 +44,8 @@ import {PoemDetailResolverService} from "./poem-detail-resolver.service";
     ],
     providers: [
         PoemService,
-        PoemDetailResolverService
+        PoemDetailResolverService,
+        PoemCommentsResolverService
     ]
 })
 export class PoemsModule {

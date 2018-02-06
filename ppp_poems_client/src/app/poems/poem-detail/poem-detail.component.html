@@ -50,9 +50,9 @@
             </div>
         <hr>
             <div class="card">
-                <h5 class="card-header">{{ poem.comments.length }} comments</h5>
-                <div class="card-body" *ngFor="let comm of poem.comments">
-                    <span class="fa fa-comment"></span><small> #{{ comm.id }} {{ comm.author }}<span class="pull-right">{{ comm.date }}</span></small>
+                <h5 class="card-header">{{ comments.length }} comments</h5>
+                <div class="card-body" *ngFor="let comm of comments">
+                    <span class="fa fa-comment"></span><small> #{{ comm.id }} {{ comm.user }}<span class="pull-right">{{ comm.date }}</span></small>
                     <p class="card-text">{{ comm.content }}</p>
                 </div>
             </div>

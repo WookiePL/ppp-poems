@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {IPoem} from "./poem";
+import {IComment, IPoem} from "./poem";
 
 
 import 'rxjs/add/operator/do';
@@ -26,6 +26,13 @@ export class PoemService {
         return this.http.get<IPoem>('/api/poem/' + id, {headers: this._authService.getAuthorizationRequestHeader()})
             .do(data => console.log('getPoem' + JSON.stringify(data)))
             .catch(this.handleError);
+    }
+
+    getComments(poem_id: number): Observable<IComment[]> {
+        return this.http.get<IComment[]>('/api/comment/' + poem_id, {
+            headers: this._authService.getAuthorizationRequestHeader()
+        }).do(data => console.log('getComments' + JSON.stringify(data)))
+          .catch(this.handleError);
     }
 
     private handleError(error: HttpErrorResponse) {
