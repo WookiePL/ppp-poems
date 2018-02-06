@@ -31,6 +31,12 @@ export class PoemsListComponent implements OnInit {
 
     deletePoem(poemId: number) {
         console.log("Delete poem: " + poemId);
+        this._poemService.deletePost(poemId)
+            .subscribe(poems => {
+                this._poemService.getPoems().subscribe(poems => {
+                    this.poems = poems;
+                })
+            });
     }
 
 }

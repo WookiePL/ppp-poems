@@ -49,6 +49,13 @@ export class PoemService {
 
     }
 
+    deletePost(poemId: number): Observable<IPoem>{
+        return this.http.delete<IPoem>('/api/poem/' + poemId, {
+            headers: this._authService.getAuthorizationRequestHeader()
+        }).do(data => console.log('deletePoem' + JSON.stringify(data)))
+          .catch(this.handleError);
+    }
+
     private handleError(error: HttpErrorResponse) {
         console.error(error);
         return Observable.throw(error || 'Server error');
