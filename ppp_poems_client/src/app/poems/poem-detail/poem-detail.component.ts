@@ -13,7 +13,7 @@ import {PoemService} from "../poem.service";
 })
 export class PoemDetailComponent implements OnInit {
 
-    rated: boolean;
+    rated: boolean = false;
     rating: number;
     comments: Array<IComment>;
     public poem: IPoem;
@@ -44,12 +44,12 @@ export class PoemDetailComponent implements OnInit {
                 console.log(this.rateId);
                 this.rated = true;
                 this.update = true;
+                console.log(this.update);
             }
         }
     }
 
     ngOnInit() {
-        this.rated = false;
         this.poem = this.route.snapshot.data['poem'];
         this.comments = this.route.snapshot.data['comments'];
         console.log(this.poem.rate_set);
@@ -70,9 +70,11 @@ export class PoemDetailComponent implements OnInit {
 
     refreshData($event: RatingChangedEvent) {
         this.poemService.getPoem(this.poem.id).subscribe(
-            (res) => this.poem = res
+            (res) => this.poem = res,
+            err => console.log(err),
+            () => this.findUserRating()
         );
-        this.findUserRating();
+
     }
 }
 
