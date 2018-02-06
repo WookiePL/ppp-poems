@@ -11,6 +11,7 @@ import 'rxjs/add/observable/of';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {AuthService} from "../shared/services/auth.service";
 import {IRate} from "./rate";
+import {RequestOptions} from "@angular/http";
 
 @Injectable()
 export class PoemService {

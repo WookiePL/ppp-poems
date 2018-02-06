@@ -1,9 +1,8 @@
 from django.contrib.auth.models import User
-from rest_framework import serializers
 from oauth2_provider.models import Application
-from rest_framework.validators import UniqueValidator
-
 from poems.models import Author, Poem, Rate, Comment
+from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,13 +35,13 @@ class AuthorSerializer(serializers.ModelSerializer):
         model = Author
         fields = ('id', 'name', 'surname')
 
-class CommentSerializer(serializers.ModelSerializer):
 
+class CommentSerializer(serializers.ModelSerializer):
     poem_id = serializers.IntegerField(source='poem.id', write_only=True, allow_null=False)
 
     def create(self, validated_data):
         return Comment.objects.create(content=validated_data.pop('content'), poem_id=validated_data.pop('poem')['id'],
-                                  user=validated_data.pop('user'), date=validated_data.pop('date'))
+                                      user=validated_data.pop('user'), date=validated_data.pop('date'))
 
     class Meta:
         model = Comment
@@ -95,24 +94,24 @@ class PoemSerializer(serializers.ModelSerializer):
 
 
 class PoemCreatorSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many=False, read_only=True)
-    author = serializers.IntegerField
-    rating = serializers.SerializerMethodField()
-    rating_count = serializers.SerializerMethodField()
+    # user = UserSerializer(many=False, read_only=True),
+    userName = serializers.CharField(source='user.username', write_only=True, allow_null=False)
+    author_id = serializers.IntegerField(source='author.id', write_only=True, allow_null=False)
 
-    class Meta:
-        model = Poem
-        fields = ('id', 'title', 'description', 'content', 'author', 'creation_time', 'modification_time',
-                  'user', 'rating', 'rating_count')
 
     def create(self, validated_data):
         poem = Poem.objects.create(
             title=validated_data['title'],
             description=validated_data['description'],
             content=validated_data['content'],
-            author=validated_data['author']
-        )
+            author_id=validated_data.pop('author')['id'],
+            user_id=User.objects.get(username__exact=validated_data.pop('user')['username']).id)
         return poem
+
+    class Meta:
+        model = Poem
+        fields = (
+            'userName', 'title', 'description', 'content', 'author_id',  'creation_time', 'modification_time', 'id')
 
 
 class ApplicationSerializer(serializers.ModelSerializer):

@@ -29,16 +29,22 @@ class AuthorView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AuthorSerializer
 
 
+class PoemsView(generics.ListAPIView):
+    authentication_classes = []
+    queryset = Poem.objects.all()
+    serializer_class = PoemSerializer
+
+
 class PoemView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = []
     queryset = Poem.objects.all()
     serializer_class = PoemSerializer
 
 
-class PoemsView(generics.ListAPIView):
+class PoemCreateView(generics.CreateAPIView):
     authentication_classes = []
     queryset = Poem.objects.all()
-    serializer_class = PoemSerializer
+    serializer_class = PoemCreatorSerializer
 
 
 class RateView(generics.RetrieveUpdateDestroyAPIView):
@@ -51,12 +57,6 @@ class RateCreateView(generics.CreateAPIView):
     authentication_classes = []
     queryset = Rate.objects.all()
     serializer_class = RateSerializer
-
-
-class PoemCreate(generics.CreateAPIView):
-    authentication_classes = []
-    queryset = Poem.objects.all()
-    serializer_class = PoemCreatorSerializer
 
 
 # User profile view
