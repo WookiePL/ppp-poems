@@ -21,7 +21,7 @@
                 <td>{{ poem.title }}</td>
                 <td>{{ poem.description }}</td>
                 <td>{{ poem.content }}</td>
-                <td><star-rating-comp [staticColor]="'ok'" [showHalfStars]="true" [labelText]="poem.rating" [hoverEnabled]="false" [starType]="'svg'" [rating]="poem.rating"></star-rating-comp></td>
+                <td><star-rating-comp [staticColor]="'ok'" [showHalfStars]="true" [labelText]="poem.rating" [hoverEnabled]="false" [starType]="'svg'" [rating]="poem.rating" [readOnly]="true"></star-rating-comp></td>
                 <td>{{ poem.author.name }} {{ poem.author.surname }}</td>
                 <td>{{ poem.creation_time | date: 'short'}}</td>
                 <td>{{ poem.modification_time | date: 'short'}}</td>
