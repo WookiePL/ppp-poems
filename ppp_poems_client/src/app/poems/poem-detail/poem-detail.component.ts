@@ -69,7 +69,10 @@ export class PoemDetailComponent implements OnInit {
     }
 
     refreshData($event: RatingChangedEvent) {
-
+        this.poemService.getPoem(this.poem.id).subscribe(
+            (res) => this.poem = res
+        );
+        this.findUserRating();
     }
 }
 
