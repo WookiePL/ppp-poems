@@ -42,6 +42,7 @@ class Rate(models.Model):
 
 
 class Comment(models.Model):
-    content = models.TextField(blank=True)
-    user = models.OneToOneField(User)
+    content = models.TextField(blank=False)
+    user = models.TextField(blank=False)
+    date = models.DateField(blank=True)
     poem = models.ForeignKey(Poem, on_delete=models.CASCADE)
