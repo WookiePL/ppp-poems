@@ -1,19 +1,18 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div>
-    <app-page-header [heading]="'Lista wierszy'" [icon]="'fa-table'"></app-page-header>
+
     <div class="card mb-3">
-        <div class="card-header">Wiersze</div>
+        <div class="card-header">Poems</div>
         <table class="card-body table table-hover">
             <thead>
             <tr>
                 <th>#</th>
-                <th>Tytuł</th>
-                <th>Opis</th>
-                <th>Treść</th>
-                <th>Ocena</th>
-                <th>Autor</th>
-                <th>Data utworzenia</th>
-                <th>Data modyfikacji</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Content</th>
+                <th>Rate</th>
+                <th>Author</th>
+                <th>Creation date</th>
+                <th>Modification date</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -22,16 +21,20 @@
                 <td>{{ poem.title }}</td>
                 <td>{{ poem.description }}</td>
                 <td>{{ poem.content }}</td>
-                <td><star-rating-comp [staticColor]="'ok'" [showHalfStars]="true" [labelText]="poem.rating" [hoverEnabled]="false" [starType]="'svg'" [rating]="poem.rating"></star-rating-comp></td>
+                <td><star-rating-comp [staticColor]="'ok'" [showHalfStars]="true" [labelText]="poem.rating" [hoverEnabled]="false" [starType]="'svg'" [rating]="poem.rating" [readOnly]="true"></star-rating-comp></td>
                 <td>{{ poem.author.name }} {{ poem.author.surname }}</td>
                 <td>{{ poem.creation_time | date: 'short'}}</td>
                 <td>{{ poem.modification_time | date: 'short'}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm btn-block">Edit</button><br>
+                    <button type="button" class="btn btn-primary btn-sm btn-block">Delete</button>
+                </td>
             </tr>
 
             </tbody>
         </table>
     </div>
-</div>
+
 
 
 <router-outlet></router-outlet>
