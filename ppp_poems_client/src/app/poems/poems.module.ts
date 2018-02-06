@@ -39,7 +39,8 @@ import {PoemDetailResolverService} from "./poem-detail-resolver.service";
     ],
     exports: [
         SidebarComponent,
-        HeaderComponent
+        HeaderComponent,
+        PoemsListComponent
     ],
     providers: [
         PoemService,
