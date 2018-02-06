@@ -25,4 +25,12 @@ export class PoemsListComponent implements OnInit {
                 error => this.errorMessage = <any> error);
     }
 
+    editPoem(poemId: number) {
+        console.log("Edit poem: " + poemId);
+    }
+
+    deletePoem(poemId: number) {
+        console.log("Delete poem: " + poemId);
+    }
+
 }

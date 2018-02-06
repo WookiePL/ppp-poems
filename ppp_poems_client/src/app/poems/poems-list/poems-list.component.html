@@ -26,8 +26,8 @@
                 <td>{{ poem.creation_time | date: 'short'}}</td>
                 <td>{{ poem.modification_time | date: 'short'}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm btn-block">Edit</button><br>
-                    <button type="button" class="btn btn-primary btn-sm btn-block">Delete</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-block" (click)="editPoem(poem.id)">Edit</button><br>
+                    <button type="button" class="btn btn-primary btn-sm btn-block" (click)="deletePoem(poem.id)">Delete</button>
                 </td>
             </tr>
 
