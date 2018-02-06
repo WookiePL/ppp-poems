@@ -48,6 +48,10 @@ export class PoemService {
 
     }
 
+    // addPoem(poem): Observable<IPoem> {
+    //     return this.http.post('api/')
+    // }
+
     private handleError(error: HttpErrorResponse) {
         console.error(error);
         return Observable.throw(error || 'Server error');

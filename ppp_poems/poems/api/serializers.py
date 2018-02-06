@@ -94,6 +94,27 @@ class PoemSerializer(serializers.ModelSerializer):
             return 0
 
 
+class PoemCreatorSerializer(serializers.ModelSerializer):
+    user = UserSerializer(many=False, read_only=True)
+    author = serializers.IntegerField
+    rating = serializers.SerializerMethodField()
+    rating_count = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Poem
+        fields = ('id', 'title', 'description', 'content', 'author', 'creation_time', 'modification_time',
+                  'user', 'rating', 'rating_count')
+
+    def create(self, validated_data):
+        poem = Poem.objects.create(
+            title=validated_data['title'],
+            description=validated_data['description'],
+            content=validated_data['content'],
+            author=validated_data['author']
+        )
+        return poem
+
+
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application

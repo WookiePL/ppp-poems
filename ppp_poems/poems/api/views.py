@@ -1,11 +1,11 @@
 from django.contrib.auth.models import User
 from oauth2_provider.contrib.rest_framework import OAuth2Authentication, permissions
-from rest_framework import generics
 from oauth2_provider.models import Application
-
 from poems.api.serializers import AuthorSerializer, PoemSerializer, ApplicationSerializer, UserProfileSerializer, \
     UserSerializer, RateSerializer, CommentSerializer
+from poems.api.serializers import PoemCreatorSerializer
 from poems.models import Author, Poem, Rate, Comment
+from rest_framework import generics
 
 
 class ApplicationView(generics.ListAPIView):
@@ -52,6 +52,13 @@ class RateCreateView(generics.CreateAPIView):
     queryset = Rate.objects.all()
     serializer_class = RateSerializer
 
+
+class PoemCreate(generics.CreateAPIView):
+    authentication_classes = []
+    queryset = Poem.objects.all()
+    serializer_class = PoemCreatorSerializer
+
+
 # User profile view
 class UserProfileView(generics.RetrieveAPIView):
     authentication_classes = [OAuth2Authentication]
@@ -69,7 +76,8 @@ class UserRegistration(generics.CreateAPIView):
 
 class CommentViewCreate(generics.CreateAPIView):
     authentication_classes = []
-    #queryset = Comment.objects.all()
+
+    # queryset = Comment.objects.all()
     def get_queryset(self):
         poem_id = self.kwargs['poem_id']
         return Comment.objects.filter(poem_id=poem_id)
@@ -79,6 +87,7 @@ class CommentViewCreate(generics.CreateAPIView):
 
 class CommentView(generics.ListAPIView):
     authentication_classes = []
+
     def get_queryset(self):
         poem_id = self.kwargs['poem_id']
         return Comment.objects.filter(poem_id=poem_id)

@@ -1,3 +1,24 @@
-<p>
-  poems-add works!
-</p>
+<div>
+    <app-page-header [heading]="'Forms'" [icon]="'fa-edit'"></app-page-header>
+
+    <div class="row">
+        <div class="col-lg-6">
+
+            <form #newPoemForm="ngForm" (ngSubmit)="addPoem(newPoemForm.value)">
+                <fieldset class="form-group">
+                    <label for="poemTitle">Tytuł</label>
+                    <input class="form-control">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="poemDescription">Opis</label>
+                    <textarea class="form-control" rows="2"></textarea>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="poemContent">Treść</label>
+                    <textarea class="form-control" rows="5"></textarea>
+                </fieldset>
+                <button type="submit" class="btn btn-secondary">Submit Button</button>
+            </form>
+        </div>
+    </div>
+</div>
