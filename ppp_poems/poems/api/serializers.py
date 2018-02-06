@@ -3,7 +3,7 @@ from rest_framework import serializers
 from oauth2_provider.models import Application
 from rest_framework.validators import UniqueValidator
 
-from poems.models import Author, Poem, Rate
+from poems.models import Author, Poem, Rate, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -35,6 +35,18 @@ class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
         fields = ('id', 'name', 'surname')
+
+class CommentSerializer(serializers.ModelSerializer):
+
+    poem_id = serializers.IntegerField(source='poem.id', write_only=True, allow_null=False)
+
+    def create(self, validated_data):
+        return Comment.objects.create(content=validated_data.pop('content'), poem_id=validated_data.pop('poem')['id'],
+                                  user=validated_data.pop('user'), date=validated_data.pop('date'))
+
+    class Meta:
+        model = Comment
+        fields = ('id', 'content', 'user', 'date', 'poem_id')
 
 
 class RateSerializer(serializers.ModelSerializer):
