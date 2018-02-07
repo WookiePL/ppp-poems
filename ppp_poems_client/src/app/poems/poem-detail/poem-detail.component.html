@@ -7,7 +7,12 @@
                 <star-rating-comp [labelText]="poem.rating + ' (' + poem.rating_count + ' rates)'" [labelPosition]="'right'" [staticColor]="'ok'" [showHalfStars]="true" [readOnly]="true" [starType]="'svg'" [rating]="poem.rating"></star-rating-comp>
                 <p></p>
             </div>
-            <h4 class="font-weight-bold card-title mr-3">{{ poem.title }}</h4>
+            <div>
+                <h4 class="font-weight-bold card-title mr-3" >{{ poem.title }} <span class="btn-xs push-right" data-toggle="tooltip" data-placement="bottom" title="{{ poem.description }}">
+                    <i class="fa fa-cloud"></i>
+                </span></h4>
+
+            </div>
             <blockquote class="blockquote">
                 <p style="white-space: pre-wrap;" class="mb-3">{{ poem.content }}</p>
                 <footer class="blockquote-footer">{{ poem.author.name }} {{ poem.author.surname }}</footer>
