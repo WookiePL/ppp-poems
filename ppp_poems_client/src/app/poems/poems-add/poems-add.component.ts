@@ -14,8 +14,11 @@ export class PoemsAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  addPoem(formValues) {
-      this.poemService.addPoem(formValues).subscribe(poem => {
+  addPoem(title: string, description: string, content: string) {
+
+
+
+      this.poemService.addPoem("string", title, description, content, 1).subscribe(poem => {
           this.router.navigate(['/poems']);
       });
   }

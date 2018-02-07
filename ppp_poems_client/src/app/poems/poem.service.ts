@@ -50,9 +50,22 @@ export class PoemService {
 
     }
 
-    // addPoem(poem): Observable<IPoem> {
-    //     return this.http.post('api/')
-    // }
+    addPoem(userName: string, title: string, description: string, content: string, author_id: number): Observable<IPoem> {
+        let headers = new HttpHeaders().set("Content-Type", "application/json");
+
+        return this.http.post<IPoem>('/api/poem/create', JSON.stringify({
+            userName: userName,
+            title: title,
+            description: description,
+            content: content,
+            author_id: author_id
+        }), {
+            responseType: "json",
+            headers: headers
+        })
+            .do(response => console.log('postPoem' + JSON.stringify(response)))
+            .catch(this.handleError);
+    }
 
     private handleError(error: HttpErrorResponse) {
         console.error(error);

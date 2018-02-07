@@ -17,6 +17,7 @@ import { PoemRateDialogComponent } from './poem-rate-dialog/poem-rate-dialog.com
 import {PoemDetailResolverService} from "./poem-detail-resolver.service";
 import {PoemsAddComponent} from "./poems-add/poems-add.component";
 import {PoemCommentsResolverService} from "./poem-comments-resolver.service";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import {PoemCommentsResolverService} from "./poem-comments-resolver.service";
         PageHeaderModule,
         StarRatingModule,
         SharedPipesModule,
+        FormsModule
     ],
     declarations: [
         PoemsListComponent,

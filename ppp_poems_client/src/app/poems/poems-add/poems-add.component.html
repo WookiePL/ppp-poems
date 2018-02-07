@@ -3,22 +3,25 @@
 
     <div class="row">
         <div class="col-lg-6">
-
-            <form #newPoemForm="ngForm" (ngSubmit)="addPoem(newPoemForm.value)">
-                <fieldset class="form-group">
-                    <label for="poemTitle">Tytuł</label>
-                    <input class="form-control">
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="poemDescription">Opis</label>
-                    <textarea class="form-control" rows="2"></textarea>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="poemContent">Treść</label>
-                    <textarea class="form-control" rows="5"></textarea>
-                </fieldset>
-                <button type="submit" class="btn btn-secondary">Submit Button</button>
-            </form>
+            <div class="form-group">
+                <label for="poemTitle">Tytuł</label>
+                <input #poemTitle id="poemTitle" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="poemDescription">Opis</label>
+                <textarea #poemDescription name="description" id="poemDescription" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="poemContent">Treść</label>
+                <textarea #poemContent name="content" id="poemContent" class="form-control" rows="5"></textarea>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-xs-2 col-xs-offset-2">
+                    <input type="checkbox" class="form-check-input" id="notRobotCheckbox" [checked]="(isARobot)" (load)="isARobot = true" (change)="isARobot = !isARobot">
+                </div>
+                <label class="form-check-label" for="notRobotCheckbox">I'm absolutely not a robot!</label>
+            </div>
+            <button (click)="addPoem(poemTitle.value, poemDescription.value, poemContent.value)" type="submit" class="btn btn-primary" [disabled]="!isARobot">Add this poem</button>
         </div>
     </div>
 </div>
