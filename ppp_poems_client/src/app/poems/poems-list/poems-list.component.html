@@ -1,7 +1,7 @@
 
     <div class="card mb-3">
         <div class="card-header">Poems</div>
-        <table class="card-body table table-hover">
+        <table class="card-body table table-hover" *ngIf="poems && poems.length">
             <thead>
             <tr>
                 <th>#</th>
@@ -30,7 +30,6 @@
                     <button type="button" class="btn btn-primary btn-sm btn-block" (click)="deletePoem(poem.id)">Delete</button>
                 </td>
             </tr>
-
             </tbody>
         </table>
     </div>

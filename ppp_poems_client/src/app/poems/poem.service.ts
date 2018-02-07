@@ -11,6 +11,7 @@ import 'rxjs/add/observable/of';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {AuthService} from "../shared/services/auth.service";
 import {IRate} from "./rate";
+import {RequestOptions} from "@angular/http";
 
 @Injectable()
 export class PoemService {
@@ -47,6 +48,23 @@ export class PoemService {
         }).do(data => console.log('getComments' + JSON.stringify(data)))
           .catch(this.handleError);
 
+    }
+
+    addPoem(userName: string, title: string, description: string, content: string, author_id: number): Observable<IPoem> {
+        let headers = new HttpHeaders().set("Content-Type", "application/json");
+
+        return this.http.post<IPoem>('/api/poem/create', JSON.stringify({
+            userName: userName,
+            title: title,
+            description: description,
+            content: content,
+            author_id: author_id
+        }), {
+            responseType: "json",
+            headers: headers
+        })
+            .do(response => console.log('postPoem' + JSON.stringify(response)))
+            .catch(this.handleError);
     }
 
     deletePost(poemId: number): Observable<IPoem>{

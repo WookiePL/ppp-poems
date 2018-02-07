@@ -15,12 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework_swagger.views import get_swagger_view
 from poems.api.views import AuthorView, PoemView, PoemsView, AuthorsView, ApplicationView, UserProfileView, \
-    UserRegistration, RateView, RateCreateView, CommentView, CommentViewCreate
+    UserRegistration, RateView, RateCreateView, CommentView, CommentViewCreate, PoemCreateView
+from rest_framework_swagger.views import get_swagger_view
 
 admin.autodiscover()
-
 
 schema_view = get_swagger_view(title='PPP poems API')
 urlpatterns = [
@@ -29,6 +28,7 @@ urlpatterns = [
     url(r'^api/author/(?P<pk>\d+)/$', AuthorView.as_view()),
     url(r'^api/authors$', AuthorsView.as_view()),
     url(r'^api/poem/(?P<pk>\d+)/$', PoemView.as_view()),
+    url(r'^api/poem/create$', PoemCreateView.as_view()),
     url(r'^api/poems$', PoemsView.as_view()),
     url(r'^api/user/(?P<username>.+)/$', UserProfileView.as_view()),
     url(r'^api/rate/create$', RateCreateView.as_view()),
@@ -39,4 +39,3 @@ urlpatterns = [
     url(r'^api/comment/$', CommentViewCreate.as_view()),
     url(r'^api/o/', include('oauth2_provider.urls', namespace='oauth2_provider'))
 ]
-
