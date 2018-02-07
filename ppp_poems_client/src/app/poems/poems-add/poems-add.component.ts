@@ -27,7 +27,7 @@ export class PoemsAddComponent implements OnInit {
         let authorId = author.split(".")[0];
         console.log('authorId :' + authorId);
 
-        this.poemService.addPoem("string", title, description, content, parseInt(authorId)).subscribe(poem => {
+        this.poemService.addPoem("admin", title, description, content, parseInt(authorId)).subscribe(poem => {
             this.router.navigate(['/poems']);
         });
     }
