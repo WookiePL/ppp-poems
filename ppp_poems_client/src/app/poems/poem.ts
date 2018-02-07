@@ -5,7 +5,7 @@ interface IShortUser {
     username: string;
 }
 
-interface IAuthor {
+export interface IAuthor {
     id: number;
     name: string;
     surname: string;

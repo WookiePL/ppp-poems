@@ -1,18 +1,24 @@
 <div>
-    <app-page-header [heading]="'Forms'" [icon]="'fa-edit'"></app-page-header>
+    <app-page-header [heading]="'Add a new poem'" [icon]="'fa-edit'"></app-page-header>
 
     <div class="row">
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="poemTitle">Tytuł</label>
+                <label>Author</label>
+                <select class="form-control" #poemAuthor>
+                    <option *ngFor="let author of authors" [ngValue]="author">{{ author.id}}. {{ author.name }} {{ author.surname }}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="poemTitle">Title</label>
                 <input #poemTitle id="poemTitle" class="form-control">
             </div>
             <div class="form-group">
-                <label for="poemDescription">Opis</label>
+                <label for="poemDescription">Description</label>
                 <textarea #poemDescription name="description" id="poemDescription" class="form-control" rows="2"></textarea>
             </div>
             <div class="form-group">
-                <label for="poemContent">Treść</label>
+                <label for="poemContent">Content</label>
                 <textarea #poemContent name="content" id="poemContent" class="form-control" rows="5"></textarea>
             </div>
             <div class="col-sm-6">
@@ -21,7 +27,7 @@
                 </div>
                 <label class="form-check-label" for="notRobotCheckbox">I'm absolutely not a robot!</label>
             </div>
-            <button (click)="addPoem(poemTitle.value, poemDescription.value, poemContent.value)" type="submit" class="btn btn-primary" [disabled]="!isARobot">Add this poem</button>
+            <button (click)="addPoem(poemTitle.value, poemDescription.value, poemContent.value, poemAuthor.value)" type="submit" class="btn btn-primary" [disabled]="!isARobot">Add this poem</button>
         </div>
     </div>
 </div>
